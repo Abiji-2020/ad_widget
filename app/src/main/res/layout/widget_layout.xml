@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/widget_background">
+
+    <!-- Header: App Title & Streak Badge -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:id="@+id/widget_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HabitWidget"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:id="@+id/streak_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/streak_badge_bg"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/widget_streak_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 0 Days"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Metrics Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="12dp">
+
+        <!-- Steps Progress Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/widget_steps_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚶 Steps: 0 / 10k"
+                android:textColor="#B0BEC5"
+                android:textSize="11sp" />
+
+            <ProgressBar
+                android:id="@+id/widget_steps_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="4dp"
+                android:progress="0"
+                android:max="10000"
+                android:progressTint="#00E5FF"
+                android:progressBackgroundTint="#20FFFFFF" />
+        </LinearLayout>
+
+        <!-- Instagram Progress Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:id="@+id/widget_instagram_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📱 Insta: 0m / 2h"
+                android:textColor="#B0BEC5"
+                android:textSize="11sp" />
+
+            <ProgressBar
+                android:id="@+id/widget_instagram_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="4dp"
+                android:progress="0"
+                android:max="7200"
+                android:progressTint="#00E676"
+                android:progressBackgroundTint="#20FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Divider Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1AFFFFFF"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Workout Section: Today's Task & Quick Increments -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Workout Details -->
+        <LinearLayout
+            android:id="@+id/widget_workout_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/widget_controls"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/widget_workout_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💪 Today: Loading..."
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_workout_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reps: 0 / 0"
+                android:textColor="#90A4AE"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- Dynamic Quick Log Buttons -->
+        <LinearLayout
+            android:id="@+id/widget_controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
+
+            <Button
+                android:id="@+id/btn_widget_minus"
+                android:layout_width="45dp"
+                android:layout_height="32dp"
+                android:background="@drawable/button_bg"
+                android:text="-1"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btn_widget_plus"
+                android:layout_width="45dp"
+                android:layout_height="32dp"
+                android:background="@drawable/button_bg"
+                android:text="+1"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
