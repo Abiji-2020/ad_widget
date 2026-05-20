@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
+import android.os.Build
 import com.abi.widgettracker.MainActivity
 import com.abi.widgettracker.R
 import com.abi.widgettracker.data.DatabaseHelper
@@ -108,12 +109,17 @@ class TrackerWidgetProvider : AppWidgetProvider() {
 
         // Color logic for Instagram Limit warning
         // High limit threshold = 2 hours (120 minutes)
-        if (instaMinutes >= 120) {
-            views.setProgressTintList(R.id.widget_instagram_progress, android.content.res.ColorStateList.valueOf(Color.parseColor("#FF1744"))) // Red
-        } else if (instaMinutes >= 96) {
-            views.setProgressTintList(R.id.widget_instagram_progress, android.content.res.ColorStateList.valueOf(Color.parseColor("#FF9100"))) // Orange
-        } else {
-            views.setProgressTintList(R.id.widget_instagram_progress, android.content.res.ColorStateList.valueOf(Color.parseColor("#00E676"))) // Green
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val tintColor = when {
+                instaMinutes >= 120 -> "#FF1744" // Red
+                instaMinutes >= 96 -> "#FF9100"  // Orange
+                else -> "#00E676"                // Green
+            }
+            views.setColorStateList(
+                R.id.widget_instagram_progress,
+                "setProgressTintList",
+                android.content.res.ColorStateList.valueOf(Color.parseColor(tintColor))
+            )
         }
 
         // 3. Streak display (🔥 motivated)
